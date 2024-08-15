@@ -1,5 +1,4 @@
 const challenges = [
-    // Défis généraux
     "Chanter une chanson a cappella",
     "Faire le coq",
     "Faire dix tours sur soi-même avec un balai",
@@ -52,87 +51,37 @@ const challenges = [
     "Changer de prénom pour le reste de la soirée",
     "Dire un mot interdit",
     "Manger un piment",
-    // Défis axés sur Hiro
-    "Hiro doit boire deux shots chaque fois que quelqu'un dit 'boire'",
-    "Hiro doit faire un moonwalk après avoir bu deux shots",
-    "Hiro doit imiter un animal après avoir pris deux bouffées d'herbe",
-    "Hiro doit chanter une chanson à l'envers après deux verres de vin",
-    "Hiro doit danser sur une chanson choisie par le groupe après avoir fumé deux fois",
-    "Hiro doit mimer un film en ayant les yeux bandés après deux shots",
-    "Hiro doit échanger son verre avec la personne en face et boire cul sec deux fois",
-    "Hiro doit raconter une blague en tenant deux glaçons dans sa bouche",
-    "Hiro doit faire le poirier après avoir bu deux cocktails",
-    "Hiro doit parler avec un accent après avoir fumé deux fois",
-    "Hiro doit faire une danse TikTok après deux verres de bière",
-    "Hiro doit envoyer un message embarrassant à un ex après deux shots",
-    "Hiro doit changer la sonnerie de son téléphone pour un son ridicule après deux verres",
-    "Hiro doit dire une phrase en chuchotant dans l’oreille d’un autre joueur après deux bouffées",
-    "Hiro doit imiter un bébé qui pleure après avoir bu deux verres",
-    "Hiro doit porter une chaussette sur une main pendant deux tours après avoir fumé",
-    "Hiro doit faire 10 pompes ou squats après avoir fumé deux fois",
-    "Hiro doit faire un tour de la pièce en courant sur les genoux après deux shots",
-    "Hiro doit appeler un restaurant et poser une question ridicule après deux verres",
-    "Hiro doit parler en rimes pendant 5 minutes après deux shots",
-    "Hiro doit dessiner quelque chose les yeux fermés après avoir fumé deux fois",
-    "Hiro doit boire deux verres sans utiliser les mains",
-    "Hiro doit faire semblant d'être en slow motion pendant 2 minutes après deux shots",
-    "Hiro doit faire un bisou sur le crâne d’un chauve après deux verres",
-    "Hiro doit convaincre un étranger de chanter bon anniversaire après deux bouffées",
-    "Hiro doit faire un dessin de quelqu’un dans la rue et essayer de le lui vendre après deux shots",
-    "Hiro doit garder un glaçon dans sa main jusqu’à la fonte totale après deux verres",
-    "Hiro doit remplir un verre d’eau avec les mains attachées après deux bouffées",
-    "Hiro doit chanter la Marseillaise dans un bar après deux shots",
-    "Hiro doit faire un concours de grimaces après deux verres",
-    "Hiro doit danser comme une poule après avoir fumé deux fois",
-    "Hiro doit faire un discours de mariage après deux shots",
-    "Hiro doit boire un shot cul sec chaque fois que quelqu'un dit 'Hiro'",
-    "Hiro doit faire un concours de hula hoop après deux verres",
-    "Hiro doit faire un concours de twerk après avoir fumé deux fois",
-    "Hiro doit faire un concours de rap après deux shots",
-    "Hiro doit faire un concours de karaoké après deux verres",
-    "Hiro doit danser comme un robot après avoir fumé deux fois",
-    "Hiro doit faire un compliment original à chaque personne après deux verres",
-    "Hiro doit inverser ses vêtements avec une autre personne après avoir fumé deux fois",
-    "Hiro doit boire à l'envers après deux shots",
-    "Hiro doit dire l'alphabet à l'envers après deux verres",
-    "Hiro doit changer de place avec la personne en face après avoir fumé deux fois",
-    "Hiro doit faire un bisou à la personne de son choix après deux verres",
-    "Hiro doit parler avec un accent après avoir fumé deux fois",
-    "Hiro doit tenir en équilibre sur une jambe après deux shots",
-    "Hiro doit faire un selfie de groupe après avoir fumé deux fois",
-    "Hiro doit raconter un secret après deux verres",
-    "Hiro doit écrire un mot sur le front de quelqu'un après avoir fumé deux fois",
-    "Hiro doit chanter une chanson en remplaçant les mots par 'la la la' après deux shots",
-    "Hiro doit manger un aliment bizarre après deux verres",
-    "Hiro doit lancer un défi à quelqu'un d'autre après avoir fumé deux fois",
-    "Hiro doit jouer à pierre-feuille-ciseaux après deux shots",
-    "Hiro doit déclarer son amour à un objet après deux verres"
+    // Défis axés sur Hiro (ne pas oublier d'ajouter vos propres défis si besoin)
 ];
 
-
 let challengeCount = 0;
+let currentChallengeIndex = -1;
 
-function displayRandomChallenge() {
-    if (challengeCount < 20) {
-        const randomIndex = Math.floor(Math.random() * challenges.length);
-        document.getElementById('challenge-display').textContent = challenges[randomIndex];
-        challengeCount++;
-        document.getElementById('challenge-counter').textContent = `${challengeCount}/20`;
-        document.getElementById('progress').style.width = `${(challengeCount / 20) * 100}%`;
-
-        if (challengeCount === 20) {
-            document.getElementById('new-challenge-btn').style.display = 'none';
-            document.getElementById('replay-btn').style.display = 'inline-block';
-        }
-    }
+function displayChallenge(index) {
+    document.getElementById('challenge-display').textContent = challenges[index];
+    document.getElementById('challenge-counter').textContent = `${challengeCount + 1}/20`;
+    document.getElementById('progress').style.width = `${((challengeCount + 1) / 20) * 100}%`;
 }
 
-document.getElementById('new-challenge-btn').addEventListener('click', displayRandomChallenge);
+document.getElementById('next-challenge-btn').addEventListener('click', () => {
+    if (challengeCount < 20) {
+        currentChallengeIndex = (currentChallengeIndex + 1) % challenges.length;
+        displayChallenge(currentChallengeIndex);
+        challengeCount++;
+    }
+});
+
+document.getElementById('prev-challenge-btn').addEventListener('click', () => {
+    if (challengeCount > 0) {
+        currentChallengeIndex = (currentChallengeIndex - 1 + challenges.length) % challenges.length;
+        displayChallenge(currentChallengeIndex);
+        challengeCount--;
+    }
+});
 
 document.getElementById('replay-btn').addEventListener('click', () => {
     challengeCount = 0;
-    document.getElementById('new-challenge-btn').style.display = 'inline-block';
-    document.getElementById('replay-btn').style.display = 'none';
+    currentChallengeIndex = -1;
     document.getElementById('challenge-display').textContent = "Cliquez sur le bouton pour un défi !";
     document.getElementById('challenge-counter').textContent = "0/20";
     document.getElementById('progress').style.width = "0%";

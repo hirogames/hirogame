@@ -25,25 +25,25 @@ body::before {
 }
 
 .title-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc légèrement transparent */
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     padding: 10px 20px;
-    position: absolute; /* Positionnement absolu */
-    top: 20px; /* Distance du haut */
-    left: 20px; /* Distance de la gauche */
-    z-index: 10; /* Au-dessus de l'image de fond */
-    font-family: 'New Amsterdam', sans-serif; /* Utiliser la police New Amsterdam */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    font-family: 'New Amsterdam', sans-serif;
 }
 
 .title-container h1 {
     margin: 0;
-    font-size: 4.5em; /* Taille agrandie par rapport à la taille originale */
+    font-size: 4.5em;
     color: #262626;
 }
 
 .game-container {
     position: absolute;
-    bottom: 20px; /* Position near the bottom of the screen */
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -51,18 +51,18 @@ body::before {
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 250px; /* Set width for rectangular shape */
-    height: 150px; /* Set height for rectangular shape */
+    width: 250px;
+    height: 150px;
     z-index: 10;
-    opacity: 0.8; /* 80% opacity */
-    font-family: 'Pixel Font-7', sans-serif; /* Use Pixel Font-7 */
+    opacity: 0.8;
+    font-family: 'Pixel Font-7', sans-serif;
 }
 
 .challenge-display {
     font-size: 1em;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.11); /* 11% transparency */
+    background-color: rgba(255, 255, 255, 0.11);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
@@ -70,7 +70,7 @@ body::before {
 .controls {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 10px;
     margin-bottom: 10px;
 }
@@ -110,35 +110,11 @@ body::before {
     border-radius: 5px;
     overflow: hidden;
     height: 10px;
-    margin-top: 10px;
 }
 
 .progress {
-    height: 100%;
     width: 0;
+    height: 100%;
     background-color: #4caf50;
-    transition: width 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .game-container {
-        width: 95%;
-        height: auto;
-        padding: 15px;
-    }
-
-    .challenge-display {
-        font-size: 0.9em;
-        padding: 10px;
-    }
-
-    .btn {
-        padding: 8px 16px;
-        font-size: 0.8em;
-    }
-
-    #replay-btn.large {
-        font-size: 1em;
-        padding: 10px 20px;
-    }
+    transition: width 0.4s ease;
 }
