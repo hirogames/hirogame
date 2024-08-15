@@ -53,22 +53,26 @@ body::before {
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    height: 150px;
+    width: 300px; /* Augmenté pour agrandir la largeur du conteneur */
+    height: 250px; /* Augmenté pour agrandir la hauteur du conteneur */
     z-index: 10;
-    opacity: 0.8;
+    opacity: 0.9;
     font-family: 'Pixel Font-7', sans-serif;
-    color: white; /* Texte blanc pour toute la div */
+    color: white;
 }
 
 .challenge-display {
-    font-size: 1em;
-    margin-bottom: 10px;
-    padding: 10px;
+    font-size: 1.2em; /* Augmenté pour agrandir la taille du texte */
+    margin-bottom: 20px;
+    padding: 30px 10px; /* Ajouté pour laisser de l'espace au-dessus et en dessous du texte */
     background-color: rgba(255, 255, 255, 0.11);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    color: white; /* Texte blanc */
+    color: white;
+    height: 100px; /* Hauteur fixe pour le défi, modifiable selon le besoin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .controls {
