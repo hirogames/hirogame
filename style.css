@@ -41,9 +41,9 @@ body::before {
     border-radius: 10px;
 }
 
-/* Style du titre */
+/* Style du titre avec la police Mario */
 .title-container h1 {
-    font-family: 'New Amsterdam', cursive;
+    font-family: 'Press Start 2P', cursive;
     font-size: 3em;
     color: #ffdd57; /* Couleur dorée pour le titre */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -83,8 +83,9 @@ body::before {
     transition: width 0.5s ease;
 }
 
-/* Affichage du défi */
+/* Affichage du défi avec la police New Amsterdam */
 .challenge-display {
+    font-family: 'New Amsterdam', sans-serif;
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
@@ -94,7 +95,7 @@ body::before {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    font-size: 1em;
+    font-size: 2em;
     text-align: center;
     line-height: 1.5;
 }
