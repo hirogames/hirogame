@@ -16,15 +16,22 @@
             Cliquez sur le bouton pour un défi !
         </div>
         <div class="controls">
-            <button id="prev-challenge-btn" class="btn"><</button>
+            <!-- Les boutons ‹ et › sont maintenant ici -->
+            <button id="prev-challenge-btn" class="btn">&lt;</button>
             <span id="challenge-counter">0/20</span>
-            <button id="next-challenge-btn" class="btn">></button>
+            <button id="next-challenge-btn" class="btn">&gt;</button>
         </div>
+        <!-- Le bouton "Rejouer" est caché par défaut -->
         <button id="replay-btn" class="btn" style="display: none;">Rejouer</button>
         <div class="progress-bar">
             <div id="progress" class="progress"></div>
         </div>
+        <!-- Conteneur pour le score final -->
+        <div id="score-display" class="score-display" style="display: none;"></div>
     </div>
+    <div id="emoji-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
+    
 </body>
 </html>
