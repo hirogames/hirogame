@@ -4,34 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HIRO GAME</title>
-    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam:wght@400&display=swap" rel="stylesheet">
+    <!-- Intégration des polices Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam:wght@400&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Feuille de style CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Conteneur du titre -->
     <div class="title-container">
         <h1>HIRO GAME</h1>
     </div>
+    
+    <!-- Conteneur principal du jeu -->
     <div class="game-container">
+        <!-- Barre de progression -->
+        <div class="progress-bar">
+            <div id="progress" class="progress"></div>
+        </div>
+
+        <!-- Affichage du défi -->
         <div id="challenge-display" class="challenge-display">
             Cliquez sur le bouton pour un défi !
         </div>
+
+        <!-- Contrôles de navigation -->
         <div class="controls">
-            <!-- Les boutons ‹ et › sont maintenant ici -->
             <button id="prev-challenge-btn" class="btn">&lt;</button>
             <span id="challenge-counter">0/20</span>
             <button id="next-challenge-btn" class="btn">&gt;</button>
         </div>
-        <!-- Le bouton "Rejouer" est caché par défaut -->
+
+        <!-- Bouton Rejouer (caché par défaut) -->
         <button id="replay-btn" class="btn" style="display: none;">Rejouer</button>
-        <div class="progress-bar">
-            <div id="progress" class="progress"></div>
-        </div>
-        <!-- Conteneur pour le score final -->
-        <div id="score-display" class="score-display" style="display: none;"></div>
     </div>
+
+    <!-- Conteneur pour les emojis (animations) -->
     <div id="emoji-container"></div>
+
+    <!-- Scripts JavaScript -->
+    <!-- Bibliothèque pour les confettis -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Script principal du jeu -->
     <script src="script.js"></script>
-    
 </body>
 </html>
