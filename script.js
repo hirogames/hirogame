@@ -210,6 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const challengeCounter = document.getElementById('challenge-counter');
     const progress = document.getElementById('progress');
     const emojiContainer = document.getElementById('emoji-container');
+    const videoContainer = document.getElementById('video-container');
+    const video = document.getElementById('hiro-video');
 
     let usedChallenges = [];
     const totalChallenges = 50;
@@ -225,83 +227,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showChallenge(index) {
         challengeDisplay.textContent = challenges[index];
-        challengeCounter.textContent = `${usedChallenges.length}/${totalChallenges}`;
-    }
-
-    function updateProgress() {
-        progressWidth = (usedChallenges.length / totalChallenges) * 100;
+        challengeCounter.textContent = `${usedChallenges.length}/20`; // Afficher le nombre de défis effectués
+        progressWidth = (usedChallenges.length / 20) * 100;
         progress.style.width = `${progressWidth}%`;
     }
 
-    function endGame() {
-        confetti();
-        showEmojis();
-        challengeDisplay.textContent = "Félicitations! \nVous êtes un gros Alcolo!";
-        challengeDisplay.style.fontSize = '3em';
-        prevChallengeBtn.style.display = 'none';
-        nextChallengeBtn.style.display = 'none';
-        replayBtn.style.display = 'block';
+    function handleNextChallenge() {
+        if (usedChallenges.length >= 20) {
+            displayCompletionMessage();
+            showCompletionVideo();
+            return;
+        }
+
+        const index = getRandomChallenge();
+        usedChallenges.push(index);
+        showChallenge(index);
+
+        createFloatingEmoji();
     }
 
-    function showEmojis() {
-        const emojis = ['🎉', '🎊', '🎈', '🥳', '💥', '🍾', '🥂', '🍻', '🍹', '🍸'];
-        const numEmojis = 100;
-
-        for (let i = 0; i < numEmojis; i++) {
-            const emoji = document.createElement('div');
-            emoji.classList.add('emoji');
-            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            emoji.style.left = `${Math.random() * 100}vw`;
-            emoji.style.top = `${Math.random() * 100}vh`;
-            emoji.style.opacity = '1';
-            emoji.style.fontSize = `${Math.random() * 2 + 1}em`;
-            emojiContainer.appendChild(emoji);
-
-            emoji.animate([
-                { transform: `translateY(0)` },
-                { transform: `translateY(100vh)` }
-            ], {
-                duration: 4000 + Math.random() * 2000,
-                easing: 'ease-out',
-                iterations: 1
-            });
-
-            setTimeout(() => {
-                emoji.remove();
-            }, 6000);
-        }
-    }
-
-    nextChallengeBtn.addEventListener('click', () => {
-        if (usedChallenges.length < totalChallenges) {
-            const randomIndex = getRandomChallenge();
-            usedChallenges.push(randomIndex);
-            showChallenge(randomIndex);
-            updateProgress();
-        } else {
-            endGame();
-        }
-    });
-
-    prevChallengeBtn.addEventListener('click', () => {
-        if (usedChallenges.length > 1) {
+    function handlePrevChallenge() {
+        if (usedChallenges.length > 0) {
             usedChallenges.pop();
-            showChallenge(usedChallenges[usedChallenges.length - 1]);
-            updateProgress();
+            const previousIndex = usedChallenges[usedChallenges.length - 1];
+            if (previousIndex !== undefined) {
+                showChallenge(previousIndex);
+            } else {
+                resetGame();
+            }
         }
-    });
+    }
 
-    replayBtn.addEventListener('click', () => {
+    function resetGame() {
         usedChallenges = [];
-        showChallenge(getRandomChallenge());
-        updateProgress();
-        replayBtn.style.display = 'none';
-        prevChallengeBtn.style.display = 'block';
-        nextChallengeBtn.style.display = 'block';
-        challengeDisplay.style.fontSize = '2em';
-    });
+        challengeDisplay.textContent = 'Cliquez sur le bouton pour un défi !';
+        challengeCounter.textContent = '0/20';
+        progress.style.width = '0%';
+        hideCompletionVideo();
+    }
 
-    // Initialisation avec le premier défi
-    showChallenge(getRandomChallenge());
-    updateProgress();
+    function displayCompletionMessage() {
+        challengeDisplay.innerHTML = "<span style='color: #ffdd57; font-size: 1.5em;'>Félicitations!<br>Vous êtes un gros Alcolo!</span>";
+        nextChallengeBtn.disabled = true; // Désactiver le bouton suivant
+        replayBtn.style.display = 'block'; // Afficher le bouton de replay
+    }
+
+    function createFloatingEmoji() {
+        const emojiList = ['⭐', '💫', '🌟', '🎉', '✨', '🌠', '🚀', '🎊'];
+        const emoji = emojiList[Math.floor(Math.random() * emojiList.length)];
+        const emojiElement = document.createElement('span');
+        emojiElement.textContent = emoji;
+        emojiElement.className = 'emoji';
+        emojiElement.style.left = `${Math.random() * 100}%`;
+        emojiContainer.appendChild(emojiElement);
+
+        emojiElement.addEventListener('animationend', () => {
+            emojiElement.remove();
+        });
+    }
+
+    function showCompletionVideo() {
+        videoContainer.style.display = 'block';
+        video.play();
+    }
+
+    function hideCompletionVideo() {
+        video.pause();
+        video.currentTime = 0;
+        videoContainer.style.display = 'none';
+    }
+
+    prevChallengeBtn.addEventListener('click', handlePrevChallenge);
+    nextChallengeBtn.addEventListener('click', handleNextChallenge);
+    replayBtn.addEventListener('click', resetGame);
 });
+
+function initializeGame() {
+    const videoContainer = document.getElementById('video-container');
+    const video = document.getElementById('hiro-video');
+    videoContainer.style.display = 'none';
+    video.pause();
+    video.currentTime = 0;
+}

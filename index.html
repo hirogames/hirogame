@@ -20,6 +20,14 @@
         <h1 id="title">HIRO GAME</h1>
     </div>
 
+    <!-- Conteneur de la vidéo (caché par défaut) -->
+    <div id="video-container" class="video-container" style="display: none;">
+        <video id="hiro-video" class="hiro-video" controls>
+            <source src="img/hiro.MOV" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
     <!-- Conteneur principal du jeu -->
     <div class="game-container">
         <!-- Barre de progression -->
@@ -45,80 +53,6 @@
 
     <!-- Conteneur pour les emojis (animations) -->
     <div id="emoji-container"></div>
-
-    <!-- Conteneur de la vidéo (caché par défaut) -->
-    <div id="video-container" class="video-container" style="display: none;">
-        <video id="hiro-video" class="hiro-video" controls>
-            <source src="hiro.mov" type="video/mov">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    <!-- Chargement de l'API YouTube Iframe -->
-    <script>
-        var player;
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                height: '0', // Hauteur réduite à 0 pour cacher la vidéo
-                width: '0',  // Largeur réduite à 0 pour cacher la vidéo
-                videoId: 'Aqd9omqj_0Q', // Remplacer par l'ID de la vidéo YouTube
-                playerVars: {
-                    'autoplay': 1,       // Activer l'autoplay
-                    'controls': 0,       // Masquer les contrôles (car la vidéo est cachée)
-                    'showinfo': 0,       // Masquer les informations de la vidéo
-                    'modestbranding': 1, // Réduire la marque YouTube
-                    'loop': 1,           // Activer la boucle de la vidéo
-                    'playlist': 'Aqd9omqj_0Q', // Obligatoire pour boucler, identique à videoId
-                    'mute': 1            // Commence la vidéo en mode muet
-                },
-                events: {
-                    'onReady': onPlayerReady // Appeler la fonction onPlayerReady lorsque le lecteur est prêt
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            event.target.playVideo(); // Démarre la vidéo dès que le lecteur est prêt
-            setTimeout(() => {
-                player.unMute(); // Réactiver le son après un délai
-            }, 500); // Délai de 500ms avant d'enlever le mute
-        }
-
-        function initializeGame() {
-            // Charger l'API YouTube et démarrer la musique au chargement de la page
-            var tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        }
-    </script>
-
-    <!-- Bibliothèque pour les confettis -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <!-- Fonction pour animer les emojis -->
-    <script>
-        const emojis = ['🎉', '🎊', '🎈', '🥳', '💥', '🍾', '🥂', '🍻', '🍹', '🍸'];
-
-        function releaseEmojis() {
-            const emojiContainer = document.getElementById('emoji-container');
-            for (let i = 0; i < 50; i++) {
-                const emoji = document.createElement('div');
-                emoji.className = 'emoji';
-                emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                emoji.style.left = `${Math.random() * 100}%`;
-                emoji.style.animationDuration = `${Math.random() * 2 + 3}s`;
-                emojiContainer.appendChild(emoji);
-
-                emoji.addEventListener('animationend', () => {
-                    emoji.remove();
-                });
-            }
-        }
-
-        document.getElementById('title').addEventListener('click', releaseEmojis);
-    </script>
 
     <!-- Script principal du jeu -->
     <script src="script.js"></script>

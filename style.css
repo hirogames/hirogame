@@ -39,6 +39,7 @@ body::before {
     background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent pour le contraste */
     padding: 10px 20px;
     border-radius: 10px;
+    z-index: 2; /* S'assurer que le titre est au-dessus des autres éléments */
 }
 
 /* Style du titre avec la police Mario */
@@ -47,6 +48,28 @@ body::before {
     font-size: 3em;
     color: #ffdd57; /* Couleur dorée pour le titre */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Conteneur de la vidéo sous le titre */
+.video-container {
+    position: absolute;
+    top: calc(100px + 10px); /* 100px sous le titre + 10px d'espace */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1; /* Au-dessus du conteneur du jeu mais sous le titre */
+    display: none; /* Cacher par défaut */
+    margin: 140px 0; /* Marge de 10px au-dessus et en dessous de la vidéo */
+}
+
+/* Style de la vidéo */
+.hiro-video {
+    width: 100%;
+    border-radius: 15px; /* Pour s'assurer que la vidéo respecte la forme arrondie */
 }
 
 /* Conteneur principal du jeu */
@@ -63,6 +86,8 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 0; /* S'assurer que le jeu est sous la vidéo mais au-dessus de l'arrière-plan */
+    margin-top: 10px; /* 10px d'espace entre la vidéo et le conteneur du jeu */
 }
 
 /* Barre de progression */
@@ -73,7 +98,6 @@ body::before {
     overflow: hidden;
     height: 15px;
     margin-bottom: 20px;
-    /*box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);*/
 }
 
 .progress {
@@ -132,6 +156,12 @@ body::before {
     margin-top: 20px;
 }
 
+/* Couleur jaune pour le score */
+#challenge-counter {
+    color: #ffdd57; /* Jaune doré */
+    font-size: 1.2em;
+}
+
 /* Style des emojis pour l'animation */
 .emoji {
     position: absolute;
@@ -152,24 +182,3 @@ body::before {
         opacity: 0;
     }
 }
-
-/* Conteneur de la vidéo */
-.video-container {
-    display: none; /* Masqué par défaut */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 400px;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 15px;
-    overflow: hidden;
-    z-index: 3; /* Au-dessus de la div du jeu */
-}
-
-.hiro-video {
-    width: 100%;
-    border-radius: 15px; /* Pour s'assurer que la vidéo respecte la forme arrondie */
-}
-
