@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="initializeGame()"> <!-- Ajout de l'événement onload pour démarrer le jeu -->
+<body onload="initializeGame()">
     <!-- Conteneur du titre -->
     <div class="title-container">
         <h1 id="title">HIRO GAME</h1>
@@ -62,7 +62,7 @@
                     'modestbranding': 1, // Réduire la marque YouTube
                     'loop': 1,           // Activer la boucle de la vidéo
                     'playlist': 'Aqd9omqj_0Q', // Obligatoire pour boucler, identique à videoId
-                    'mute': 0            // Ne pas couper le son
+                    'mute': 1            // Commence la vidéo en mode muet
                 },
                 events: {
                     'onReady': onPlayerReady // Appeler la fonction onPlayerReady lorsque le lecteur est prêt
@@ -71,7 +71,10 @@
         }
 
         function onPlayerReady(event) {
-            event.target.playVideo(); // Lancer la lecture de la vidéo dès que le joueur est prêt
+            event.target.playVideo(); // Démarre la vidéo dès que le lecteur est prêt
+            setTimeout(() => {
+                player.unMute(); // Réactiver le son après un délai
+            }, 500); // Délai de 500ms avant d'enlever le mute
         }
 
         function initializeGame() {
