@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="initializeGame()"> <!-- Ajout de l'événement onload pour démarrer le jeu -->
     <!-- Conteneur du titre -->
     <div class="title-container">
         <h1 id="title">HIRO GAME</h1>
@@ -46,15 +46,8 @@
     <!-- Conteneur pour les emojis (animations) -->
     <div id="emoji-container"></div>
 
-    <!-- Scripts JavaScript -->
-
     <!-- Chargement de l'API YouTube Iframe -->
     <script>
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
         var player;
 
         function onYouTubeIframeAPIReady() {
@@ -79,6 +72,14 @@
 
         function onPlayerReady(event) {
             event.target.playVideo(); // Lancer la lecture de la vidéo dès que le joueur est prêt
+        }
+
+        function initializeGame() {
+            // Charger l'API YouTube et démarrer la musique au chargement de la page
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         }
     </script>
 
