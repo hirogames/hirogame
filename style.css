@@ -98,6 +98,7 @@ body::before {
     font-size: 2em;
     text-align: center;
     line-height: 1.5;
+    -webkit-text-stroke: 1px #000000; /* Contour noir de 1px autour des lettres */
 }
 
 /* Contrôles de navigation */
