@@ -2,11 +2,8 @@
 <html lang="fr">
 
 <head>
-    <!-- Encodage des caractères pour éviter les problèmes d'affichage -->
     <meta charset="UTF-8">
-    <!-- Adaptation du contenu pour tous les types d'écrans -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Titre de l'onglet de la page -->
     <title>HIRO GAME</title>
 
     <!-- Intégration des polices Google Fonts -->
@@ -22,9 +19,6 @@
     <div class="title-container">
         <h1 id="title">HIRO GAME</h1>
     </div>
-
-    <!-- Conteneur pour le lecteur YouTube -->
-    <div id="youtube-player"></div>
 
     <!-- Conteneur principal du jeu -->
     <div class="game-container">
@@ -56,24 +50,21 @@
 
     <!-- Chargement de l'API YouTube Iframe -->
     <script>
-        // Création de l'élément <script> pour charger l'API YouTube
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // Variable pour stocker l'instance du lecteur YouTube
         var player;
 
-        // Fonction appelée lorsque l'API YouTube est prête
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
-                height: '0', // Hauteur réduite pour masquer la vidéo
-                width: '0',  // Largeur réduite pour masquer la vidéo
+                height: '0', // Hauteur réduite à 0 pour cacher la vidéo
+                width: '0',  // Largeur réduite à 0 pour cacher la vidéo
                 videoId: 'Aqd9omqj_0Q', // Remplacer par l'ID de la vidéo YouTube
                 playerVars: {
                     'autoplay': 1,       // Activer l'autoplay
-                    'controls': 0,       // Masquer les contrôles
+                    'controls': 0,       // Masquer les contrôles (car la vidéo est cachée)
                     'showinfo': 0,       // Masquer les informations de la vidéo
                     'modestbranding': 1, // Réduire la marque YouTube
                     'loop': 1,           // Activer la boucle de la vidéo
@@ -86,9 +77,8 @@
             });
         }
 
-        // Fonction appelée lorsque le lecteur est prêt
         function onPlayerReady(event) {
-            event.target.playVideo(); // Lancer la lecture de la vidéo
+            event.target.playVideo(); // Lancer la lecture de la vidéo dès que le joueur est prêt
         }
     </script>
 
@@ -97,28 +87,24 @@
 
     <!-- Fonction pour animer les emojis -->
     <script>
-        // Liste des emojis
         const emojis = ['🎉', '🎊', '🎈', '🥳', '💥', '🍾', '🥂', '🍻', '🍹', '🍸'];
 
-        // Fonction pour animer les emojis
         function releaseEmojis() {
             const emojiContainer = document.getElementById('emoji-container');
-            for (let i = 0; i < 50; i++) { // Augmentez le nombre pour plus d'emojis
+            for (let i = 0; i < 50; i++) {
                 const emoji = document.createElement('div');
                 emoji.className = 'emoji';
                 emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 emoji.style.left = `${Math.random() * 100}%`;
-                emoji.style.animationDuration = `${Math.random() * 2 + 3}s`; // Durée de l'animation aléatoire
+                emoji.style.animationDuration = `${Math.random() * 2 + 3}s`;
                 emojiContainer.appendChild(emoji);
 
-                // Retire l'emoji après l'animation
                 emoji.addEventListener('animationend', () => {
                     emoji.remove();
                 });
             }
         }
 
-        // Ajout d'un événement sur le clic du titre pour déclencher les emojis
         document.getElementById('title').addEventListener('click', releaseEmojis);
     </script>
     

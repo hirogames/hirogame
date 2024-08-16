@@ -26,7 +26,7 @@ body::before {
     background-image: url('img/hiro.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.7); /* Assombrit légèrement l'image pour le contraste */
+    filter: brightness(0.9); /* Assombrit légèrement l'image pour le contraste */
     z-index: -1;
 }
 
