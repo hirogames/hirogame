@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+    <!-- Encodage des caractères pour éviter les problèmes d'affichage -->
     <meta charset="UTF-8">
+    <!-- Adaptation du contenu pour tous les types d'écrans -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titre de l'onglet de la page -->
     <title>HIRO GAME</title>
+
     <!-- Intégration des polices Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam:wght@400&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <!-- Feuille de style CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam:wght@400&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <!-- Lien vers la feuille de style CSS externe -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Conteneur du titre -->
     <div class="title-container">
         <h1>HIRO GAME</h1>
     </div>
+
+    <!-- Conteneur pour le lecteur YouTube -->
     <div id="youtube-player"></div>
 
-    
     <!-- Conteneur principal du jeu -->
     <div class="game-container">
         <!-- Barre de progression -->
@@ -44,9 +53,50 @@
     <div id="emoji-container"></div>
 
     <!-- Scripts JavaScript -->
+
+    <!-- Chargement de l'API YouTube Iframe -->
+    <script>
+        // Création de l'élément <script> pour charger l'API YouTube
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Variable pour stocker l'instance du lecteur YouTube
+        var player;
+
+        // Fonction appelée lorsque l'API YouTube est prête
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0', // Hauteur réduite pour masquer la vidéo
+                width: '0',  // Largeur réduite pour masquer la vidéo
+                videoId: 'Aqd9omqj_0Q&list=PLsQELVVAFcA0PikNQd7wBw2Lcwr1fd6Km', // Remplacer par l'ID de la vidéo YouTube
+                playerVars: {
+                    'autoplay': 1,       // Activer l'autoplay
+                    'controls': 0,       // Masquer les contrôles
+                    'showinfo': 0,       // Masquer les informations de la vidéo
+                    'modestbranding': 1, // Réduire la marque YouTube
+                    'loop': 1,           // Activer la boucle de la vidéo
+                    'playlist': 'VIDEO_ID', // Obligatoire pour boucler, identique à videoId
+                    'mute': 0            // Ne pas couper le son
+                },
+                events: {
+                    'onReady': onPlayerReady // Appeler la fonction onPlayerReady lorsque le lecteur est prêt
+                }
+            });
+        }
+
+        // Fonction appelée lorsque le lecteur est prêt
+        function onPlayerReady(event) {
+            event.target.playVideo(); // Lancer la lecture de la vidéo
+        }
+    </script>
+
     <!-- Bibliothèque pour les confettis -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
     <!-- Script principal du jeu -->
     <script src="script.js"></script>
 </body>
+
 </html>

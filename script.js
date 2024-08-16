@@ -102,9 +102,7 @@ const challenges = [
     "Hiro doit raconter une blague en imitant différents accents",
     "Hiro doit faire une démonstration de danse avec des mouvements improbables"
 ];
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Récupération des éléments HTML par leur ID
     const prevChallengeBtn = document.getElementById('prev-challenge-btn');
     const nextChallengeBtn = document.getElementById('next-challenge-btn');
     const replayBtn = document.getElementById('replay-btn');
@@ -112,114 +110,98 @@ document.addEventListener('DOMContentLoaded', () => {
     const challengeCounter = document.getElementById('challenge-counter');
     const progress = document.getElementById('progress');
     const emojiContainer = document.getElementById('emoji-container');
-    const scoreDisplay = document.getElementById('score-display');
 
-    // Initialisation des variables
-    let usedChallenges = []; // Tableau pour stocker les défis déjà utilisés
-    const totalChallenges = 50; // Nombre total de défis dans le jeu
-    let progressWidth = 0; // Largeur initiale de la barre de progression
+    let usedChallenges = [];
+    const totalChallenges = 50;
+    let progressWidth = 0;
 
-    // Fonction pour obtenir un défi aléatoire non répété
     function getRandomChallenge() {
         let randomIndex;
         do {
-            randomIndex = Math.floor(Math.random() * challenges.length); // Sélectionne un index aléatoire
-        } while (usedChallenges.includes(randomIndex) && usedChallenges.length < challenges.length); 
-        // Répète tant que le défi est déjà utilisé et que tous les défis ne sont pas encore utilisés
+            randomIndex = Math.floor(Math.random() * challenges.length);
+        } while (usedChallenges.includes(randomIndex) && usedChallenges.length < challenges.length);
         return randomIndex;
     }
 
-    // Fonction pour afficher le défi
     function showChallenge(index) {
-        challengeDisplay.textContent = challenges[index]; // Affiche le défi actuel
-        challengeCounter.textContent = `${usedChallenges.length}/${totalChallenges}`; // Met à jour le compteur de défis
+        challengeDisplay.textContent = challenges[index];
+        challengeCounter.textContent = `${usedChallenges.length}/${totalChallenges}`;
     }
 
-    // Fonction pour mettre à jour la barre de progression
     function updateProgress() {
-        progressWidth = (usedChallenges.length / totalChallenges) * 100; // Calcule le pourcentage de progression
-        progress.style.width = `${progressWidth}%`; // Met à jour la largeur de la barre de progression
+        progressWidth = (usedChallenges.length / totalChallenges) * 100;
+        progress.style.width = `${progressWidth}%`;
     }
 
-    // Fonction appelée à la fin du jeu
     function endGame() {
-        confetti(); // Lance les confettis
-        showEmojis(); // Affiche les emojis
-        challengeDisplay.style.display = 'none'; // Cache le défi
-        scoreDisplay.style.display = 'block'; // Affiche le score final
-        scoreDisplay.textContent = `Score Final: ${usedChallenges.length}/${totalChallenges}`; // Affiche le score
-        prevChallengeBtn.style.display = 'none'; // Cache le bouton précédent
-        nextChallengeBtn.style.display = 'none'; // Cache le bouton suivant
-        replayBtn.style.display = 'block'; // Affiche le bouton rejouer
+        confetti();
+        showEmojis();
+        challengeDisplay.textContent = "Félicitations! Vous êtes un gros Alcolo!";
+        challengeDisplay.style.fontSize = '1.5em';
+        prevChallengeBtn.style.display = 'none';
+        nextChallengeBtn.style.display = 'none';
+        replayBtn.style.display = 'block';
     }
 
-    // Fonction pour afficher des emojis festifs
     function showEmojis() {
-        const emojis = ['🎉', '🎊', '🎈', '🥳', '💥']; // Liste d'emojis festifs
-        const numEmojis = 50; // Nombre d'emojis à afficher
+        const emojis = ['🎉', '🎊', '🎈', '🥳', '💥'];
+        const numEmojis = 50;
 
         for (let i = 0; i < numEmojis; i++) {
-            const emoji = document.createElement('div'); // Crée un nouvel élément div pour l'emoji
-            emoji.classList.add('emoji'); // Ajoute la classe 'emoji' à l'élément
-            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)]; // Sélectionne un emoji aléatoire
-            emoji.style.left = `${Math.random() * 100}vw`; // Position horizontale aléatoire
-            emoji.style.top = `${Math.random() * 100}vh`; // Position verticale aléatoire
-            emoji.style.opacity = '1'; // Opacité à 1 pour être visible
-            emoji.style.fontSize = `${Math.random() * 2 + 1}em`; // Taille aléatoire de l'emoji
-            emojiContainer.appendChild(emoji); // Ajoute l'emoji au conteneur
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = `${Math.random() * 100}vw`;
+            emoji.style.top = `${Math.random() * 100}vh`;
+            emoji.style.opacity = '1';
+            emoji.style.fontSize = `${Math.random() * 2 + 1}em`;
+            emojiContainer.appendChild(emoji);
 
-            // Animation de la chute des emojis
             emoji.animate([
                 { transform: `translateY(0)` },
                 { transform: `translateY(100vh)` }
             ], {
-                duration: 4000 + Math.random() * 2000, // Durée de l'animation entre 4 et 6 secondes
-                easing: 'ease-out', // Courbe d'animation
-                iterations: 1 // Animation unique
+                duration: 4000 + Math.random() * 2000,
+                easing: 'ease-out',
+                iterations: 1
             });
 
-            // Nettoyage des emojis après l'animation
             setTimeout(() => {
-                emoji.remove(); // Supprime l'emoji après l'animation
-            }, 6000); // 6 secondes avant la suppression
+                emoji.remove();
+            }, 6000);
         }
     }
 
-    // Gestionnaire d'événement pour le bouton "Suivant"
     nextChallengeBtn.addEventListener('click', () => {
         if (usedChallenges.length < totalChallenges) {
-            const randomIndex = getRandomChallenge(); // Récupère un défi aléatoire
-            usedChallenges.push(randomIndex); // Ajoute l'index au tableau des défis utilisés
-            showChallenge(randomIndex); // Affiche le défi
-            updateProgress(); // Met à jour la progression
+            const randomIndex = getRandomChallenge();
+            usedChallenges.push(randomIndex);
+            showChallenge(randomIndex);
+            updateProgress();
         } else {
-            endGame(); // Fin du jeu si tous les défis sont utilisés
+            endGame();
         }
     });
 
-    // Gestionnaire d'événement pour le bouton "Précédent"
     prevChallengeBtn.addEventListener('click', () => {
         if (usedChallenges.length > 1) {
-            usedChallenges.pop(); // Retire le dernier défi du tableau
-            showChallenge(usedChallenges[usedChallenges.length - 1]); // Affiche le défi précédent
-            updateProgress(); // Met à jour la progression
+            usedChallenges.pop();
+            showChallenge(usedChallenges[usedChallenges.length - 1]);
+            updateProgress();
         }
     });
 
-    // Gestionnaire d'événement pour le bouton "Rejouer"
     replayBtn.addEventListener('click', () => {
-        usedChallenges = []; // Réinitialise le tableau des défis utilisés
-        showChallenge(getRandomChallenge()); // Affiche un nouveau défi aléatoire
-        updateProgress(); // Réinitialise la progression
-        replayBtn.style.display = 'none'; // Cache le bouton rejouer
-        prevChallengeBtn.style.display = 'block'; // Affiche le bouton précédent
-        nextChallengeBtn.style.display = 'block'; // Affiche le bouton suivant
-        scoreDisplay.style.display = 'none'; // Cache l'affichage du score
-        challengeDisplay.style.display = 'block'; // Affiche le défi
-        emojiContainer.innerHTML = ''; // Efface les anciens emojis
+        usedChallenges = [];
+        showChallenge(getRandomChallenge());
+        updateProgress();
+        replayBtn.style.display = 'none';
+        prevChallengeBtn.style.display = 'block';
+        nextChallengeBtn.style.display = 'block';
+        challengeDisplay.style.fontSize = '2em';
     });
 
-    // Initialise le premier défi et la barre de progression au chargement de la page
+    // Initialisation avec le premier défi
     showChallenge(getRandomChallenge());
     updateProgress();
 });

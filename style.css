@@ -136,7 +136,7 @@ body::before {
 
 /* Bouton Rejouer */
 #replay-btn {
-    background-color: #34d399; /* Couleur verte pour différencier */
+    background-color: #ffdd57; /* Couleur verte pour différencier */
     /* box-shadow: 0 4px 0 #28a27f; */
     margin-top: 10px;
 }
