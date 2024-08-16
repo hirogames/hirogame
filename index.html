@@ -46,6 +46,14 @@
     <!-- Conteneur pour les emojis (animations) -->
     <div id="emoji-container"></div>
 
+    <!-- Conteneur de la vidéo (caché par défaut) -->
+    <div id="video-container" class="video-container" style="display: none;">
+        <video id="hiro-video" class="hiro-video" controls>
+            <source src="hiro.mov" type="video/mov">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
     <!-- Chargement de l'API YouTube Iframe -->
     <script>
         var player;
@@ -111,7 +119,7 @@
 
         document.getElementById('title').addEventListener('click', releaseEmojis);
     </script>
-    
+
     <!-- Script principal du jeu -->
     <script src="script.js"></script>
 </body>
