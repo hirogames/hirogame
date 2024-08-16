@@ -20,7 +20,7 @@
 <body>
     <!-- Conteneur du titre -->
     <div class="title-container">
-        <h1>HIRO GAME</h1>
+        <h1 id="title">HIRO GAME</h1>
     </div>
 
     <!-- Conteneur pour le lecteur YouTube -->
@@ -70,14 +70,14 @@
             player = new YT.Player('youtube-player', {
                 height: '0', // Hauteur réduite pour masquer la vidéo
                 width: '0',  // Largeur réduite pour masquer la vidéo
-                videoId: 'Aqd9omqj_0Q&list=PLsQELVVAFcA0PikNQd7wBw2Lcwr1fd6Km', // Remplacer par l'ID de la vidéo YouTube
+                videoId: 'Aqd9omqj_0Q', // Remplacer par l'ID de la vidéo YouTube
                 playerVars: {
                     'autoplay': 1,       // Activer l'autoplay
                     'controls': 0,       // Masquer les contrôles
                     'showinfo': 0,       // Masquer les informations de la vidéo
                     'modestbranding': 1, // Réduire la marque YouTube
                     'loop': 1,           // Activer la boucle de la vidéo
-                    'playlist': 'VIDEO_ID', // Obligatoire pour boucler, identique à videoId
+                    'playlist': 'Aqd9omqj_0Q', // Obligatoire pour boucler, identique à videoId
                     'mute': 0            // Ne pas couper le son
                 },
                 events: {
@@ -94,6 +94,33 @@
 
     <!-- Bibliothèque pour les confettis -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Fonction pour animer les emojis -->
+    <script>
+        // Liste des emojis
+        const emojis = ['🎉', '🎊', '🎈', '🥳', '💥', '🍾', '🥂', '🍻', '🍹', '🍸'];
+
+        // Fonction pour animer les emojis
+        function releaseEmojis() {
+            const emojiContainer = document.getElementById('emoji-container');
+            for (let i = 0; i < 50; i++) { // Augmentez le nombre pour plus d'emojis
+                const emoji = document.createElement('div');
+                emoji.className = 'emoji';
+                emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = `${Math.random() * 100}%`;
+                emoji.style.animationDuration = `${Math.random() * 2 + 3}s`; // Durée de l'animation aléatoire
+                emojiContainer.appendChild(emoji);
+
+                // Retire l'emoji après l'animation
+                emoji.addEventListener('animationend', () => {
+                    emoji.remove();
+                });
+            }
+        }
+
+        // Ajout d'un événement sur le clic du titre pour déclencher les emojis
+        document.getElementById('title').addEventListener('click', releaseEmojis);
+    </script>
     
     <!-- Script principal du jeu -->
     <script src="script.js"></script>

@@ -1,4 +1,103 @@
 const challenges = [
+    "Faire une vidéo de 30 secondes en faisant une activité ridicule",
+    "Faire le coq",
+    "Faire un strip-tease (habillé)",
+    "Faire un selfie dans une position ridicule",
+    "Faire la Macarena à l'envers",
+    "Faire un moonwalk",
+    "Faire un tour de la pièce en courant sur les genoux après deux shots",
+    "Imiter un animal",
+    "Imiter un bébé qui pleure après avoir bu deux verres",
+    "Faire un bisou sur le crâne d’un chauve après deux verres",
+    "Faire un clown pendant 5 minutes après deux verres",
+    "Faire des vocalises comme un chanteur d'opéra",
+    "Faire une imitation d'un super-héros",
+    "Faire une imitation d'un personnage de dessin animé",
+    "Faire une imitation d'un personnage de dessin animé avec des accessoires improvisés",
+    "Faire une imitation d'une émission de télévision",
+    "Faire une lecture dramatique d'un texte drôle",
+    "Faire une parodie d'une scène de film",
+    "Faire une performance de stand-up improvisé",
+    "Faire une présentation PowerPoint sur un sujet absurde",
+    "Chanter une chanson a cappella",
+    "Mimer une célébrité",
+    "Parler sans utiliser une lettre définie",
+    "Imiter la démarche de la personne à votre droite",
+    "Échanger vos vêtements avec une autre personne",
+    "Faire un discours comme si vous étiez président",
+    "Danser comme si personne ne regardait",
+    "Parler en rimes pendant 5 minutes",
+    "Inventer une chanson de rap sur un sujet aléatoire",
+    "Faire semblant de rire de manière excessive à tout ce qui est dit",
+    "Dire un tongue twister trois fois rapidement",
+    "Changer de voix à chaque phrase pendant 2 minutes",
+    "Appeler un restaurant et poser une question ridicule",
+    "Mettre un glaçon dans son pantalon",
+    "Dire une phrase en chuchotant dans l’oreille d’un autre joueur",
+    "Faire une déclaration d'amour à un inconnu sur les réseaux sociaux",
+    "Changer la sonnerie de ton téléphone pour un son ridicule",
+    "Porter une chaussette sur une main pendant deux tours",
+    "Faire 10 pompes ou squats",
+    "Dessiner une moustache sur ton visage avec un marqueur",
+    "Imiter un robot cassé",
+    "Faire un cri d'animal chaque fois que quelqu'un dit ton prénom",
+    "Prendre un selfie embarrassant et le poster en story",
+    "Manger un citron sans faire de grimace",
+    "Faire semblant d'être en slow motion pendant 2 minutes",
+    "Imiter une publicité à la télé",
+    "Porter des lunettes de soleil à l’intérieur jusqu’à la fin du tour",
+    "Écrire un poème en 1 minute",
+    "Essayer de toucher ton nez avec ta langue",
+    "Faire semblant de parler une langue étrangère",
+    "Porter une chaussette sur la tête pendant 3 minutes",
+    "Changer de prénom pour le reste de la soirée",
+    "Dire un mot interdit",
+    "Manger un piment",
+    "Faire une danse TikTok après deux verres de bière",
+    "Envoyer un message embarrassant à un ex après deux shots",
+    "Changer la sonnerie de son téléphone pour un son ridicule après deux verres",
+    "Imiter un bébé qui pleure après avoir bu deux verres",
+    "Porter une chaussette sur une main pendant deux tours après avoir fumé",
+    "Faire 10 pompes ou squats après avoir fumé deux fois",
+    "Dessiner quelque chose les yeux fermés après avoir fumé deux fois",
+    "Faire semblant d'être en slow motion pendant 2 minutes après deux shots",
+    "Convaincre un étranger de chanter bon anniversaire après deux bouffées",
+    "Faire un dessin de quelqu’un dans la rue et essayer de le lui vendre après deux shots",
+    "Garder un glaçon dans sa main jusqu’à la fonte totale après deux verres",
+    "Écrire une déclaration d’amour sur un tableau blanc après avoir fumé deux fois",
+    "Jouer à un jeu vidéo en étant debout après deux shots",
+    "Faire une démonstration de yoga après avoir fumé deux fois",
+    "Chanter une chanson en imitant un personnage de dessin animé après deux shots",
+    "Raconter une histoire drôle après avoir fumé deux fois",
+    "Changer son statut Facebook en quelque chose d'embarrassant après deux shots",
+    "Faire un selfie en train de faire une danse étrange",
+    "Préparer un plat étrange et le goûter",
+    "Faire une imitation d'un super-héros",
+    "Envoyer un message étrange à un ami",
+    "Essayer un look de mode bizarre pour le reste de la soirée",
+    "Lire un passage de livre en imitant une voix de cartoon",
+    "Faire un discours sur un sujet aléatoire",
+    "Participer à un défi de danse sur les réseaux sociaux",
+    "Faire une démonstration de magie avec des objets du quotidien",
+    "Écrire une lettre d'amour fictive à un personnage célèbre",
+    "Raconter une blague en imitant différents accents",
+    "Écrire une chanson en utilisant des objets de la pièce comme instruments",
+    "Dessiner un portrait d'un ami avec les yeux fermés",
+    "Faire des exercices de yoga en imitant un animal",
+    "Faire une lecture dramatique d'un texte drôle",
+    "Fabriquer un chapeau à partir de matériaux trouvés dans la pièce",
+    "Créer un mème basé sur une photo de lui",
+    "Essayer de jongler avec des objets légers",
+    "Réaliser une performance de stand-up improvisé",
+    "Créer une danse en utilisant uniquement les bras",
+    "Écrire une courte histoire en 5 minutes",
+    "Organiser un mini défilé de mode avec des vêtements de la pièce",
+    "Essayer de parler en vers",
+    "Créer une œuvre d'art avec des éléments trouvés dans la pièce",
+    "Faire un numéro de magie avec des cartes",
+    "Réaliser une présentation PowerPoint sur un sujet absurde",
+    "Dessiner un personnage de film avec les pieds",
+    "Faire une démonstration de danse avec des mouvements improbables",
     "Chanter une chanson a cappella",
     "Faire le coq",
     "Faire dix tours sur soi-même avec un balai",
@@ -33,6 +132,7 @@ const challenges = [
     "Changer de voix à chaque phrase pendant 2 minutes",
 
     // Défis axés sur Hiro
+    
     "Hiro doit boire deux shots chaque fois que quelqu'un dit 'boire'",
     "Hiro doit faire un moonwalk après avoir bu deux shots",
     "Hiro doit imiter un animal après avoir pris deux bouffées d'herbe",
@@ -136,16 +236,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function endGame() {
         confetti();
         showEmojis();
-        challengeDisplay.textContent = "Félicitations! Vous êtes un gros Alcolo!";
-        challengeDisplay.style.fontSize = '1.5em';
+        challengeDisplay.textContent = "Félicitations! \nVous êtes un gros Alcolo!";
+        challengeDisplay.style.fontSize = '3em';
         prevChallengeBtn.style.display = 'none';
         nextChallengeBtn.style.display = 'none';
         replayBtn.style.display = 'block';
     }
 
     function showEmojis() {
-        const emojis = ['🎉', '🎊', '🎈', '🥳', '💥'];
-        const numEmojis = 50;
+        const emojis = ['🎉', '🎊', '🎈', '🥳', '💥', '🍾', '🥂', '🍻', '🍹', '🍸'];
+        const numEmojis = 100;
 
         for (let i = 0; i < numEmojis; i++) {
             const emoji = document.createElement('div');
